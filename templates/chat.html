@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8">
+        <div class="container">
+            <div id="chat-body" class="panel panel-default">
+                <div class="panel-heading" style="color: white; background: #52AB98">Speech Emotion Recognizer</div>
+                <div id="msg-list-div" class="panel-body">
+                    <ul id="msg-list" class="list-group">
+                        {% for obj in chat %}
+                            <b>{{ obj.user }}</b>
+                            {% if obj.user == request.user %}
+                                <li class="text-right list-group-item">{{ obj.message }}</li>
+                            {% else %}
+                                <li class="text-left list-group-item">{{ obj.message }}</li>
+                            {% endif %}
+                        {% empty %}
+                            <li class="text-right list-group-item">No messages yet!</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <br>
+            <article>
+            <header style="text-align: center;">
+            </header>
+            <section class="experiment" >
+                <br>
+                <h3>
+                    Record call and send
+                </h3>
+                <button id="start-recording">Start</button>
+                <button id="stop-recording" disabled>Stop</button>
+                <button id="pause-recording" disabled>Pause</button>
+                <button id="resume-recording" disabled>Resume</button>
+            </section>
+            <section class="experiment">
+                <div id="audios-container"></div>
+            </section>
+
+        </article>
+
+        </div>
+        </div>
+    </div>
+{% endblock content %}
